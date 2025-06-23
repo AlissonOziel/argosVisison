@@ -16,8 +16,10 @@ CREATE TABLE users (
     
     
     TYPE INT,
+    USER INT,
     
-    CONSTRAINT fk_types FOREIGN KEY (TYPE) REFERENCES TYPES(id)
+    CONSTRAINT fk_types FOREIGN KEY (TYPE) REFERENCES TYPES(id),
+    CONSTRAINT fk_u FOREIGN KEY (USER) REFERENCES users(id)
     
 );
 
@@ -38,8 +40,10 @@ CREATE TABLE stokes (
     ACTIVE BOOLEAN DEFAULT TRUE,
     
     category INT,
+    USER INT,
     
-    CONSTRAINT fk_categorys FOREIGN KEY (category) REFERENCES categorys(id)
+    CONSTRAINT fk_categorys FOREIGN KEY (category) REFERENCES categorys(id),
+    CONSTRAINT FK_Us FOREIGN KEY (USER) REFERENCES users(id)
 );
 
 CREATE TABLE products (
