@@ -8,6 +8,7 @@
 
     protectedAdm();
 
+    $id = $_SESSION['adm'];
     $name = $_SESSION['name'];
     $email = $_SESSION['email'];
 
@@ -30,32 +31,40 @@
                     JOIN products as d on a.product = d.id
                     JOIN stokes as e on d.stoke = e.id
                     JOIN categorys as f on e.category = f.id
-                        ORDER BY a.id desc"; 
+                        WHERE a.user = :id
+                            ORDER BY a.id desc"; 
 
     $stmt = $PDO->prepare($sql);
+    $stmt->bindParam(':id', $id);
     $stmt->execute();
 
     //getSumSales
     $gss = "SELECT SUM(total) AS total_A
-                FROM sales as a "; 
+                FROM sales as a 
+                    WHERE a.user = :id"; 
 
     $sa_sum = $PDO->prepare($gss);
+    $sa_sum->bindParam(':id', $id);
     $sa_sum->execute(); 
     $sum_sa = $sa_sum->fetchColumn();
 
     //getSumQuantity
     $gsq = "SELECT SUM(quantity) AS sum_A
-                        FROM sales as a "; 
+                        FROM sales as a
+                            WHERE a.user = :id "; 
 
     $qu_sum = $PDO->prepare($gsq);
+    $qu_sum->bindParam(':id', $id);
     $qu_sum->execute(); 
     $sum_qu = $qu_sum->fetchColumn();
 
     //getCountSales
     $gcs = "SELECT COUNT(quantity) AS count_S
-                FROM sales as a "; 
+                FROM sales as a
+                    WHERE a.user = :id "; 
 
     $sa_count = $PDO->prepare($gcs);
+    $sa_count->bindParam(':id', $id);
     $sa_count->execute(); 
     $count_sa = $sa_count->fetchColumn();
 

@@ -77,7 +77,7 @@
     $sum_sa = $sa_sum->fetchColumn();
 
     //getSumCommision
-    $gsc = "SELECT SUM(commission) AS total_comission
+    $gsc = "SELECT SUM(comission) AS total_comission
                 FROM sales as a
                     WHERE a.user = :id "; 
 

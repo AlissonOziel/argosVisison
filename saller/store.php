@@ -251,7 +251,7 @@
                                         <h6>Vendas</h6>
                                     </div>
 
-                                    <form action="process/cadSales.php" method="POST" lass="custom-form password-form">
+                                    <form action="../process/cadSales.php" method="POST" lass="custom-form password-form">
             
                                         <div class="col-lg-9 col-12">
                                             <p class="d-flex flex-wrap mb-2">

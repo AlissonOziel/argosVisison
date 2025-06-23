@@ -306,19 +306,19 @@
 
                                 <p>
                                     <strong>Telefone:</strong>
-                                    <a href="tel:12981027987" class="ms-2">
-                                        (12) 98102-7987
+                                    <a href="tel:13981193513" class="ms-2">
+                                        (13) 98119-3513
                                     </a>
                                 </p>
 
                                 <p>
                                     <strong>Email:</strong>
-                                    <a href="mailto:pantheon@gmail.com" class="ms-2">
-                                        pantheon@gmail.com
+                                    <a href="mailto:contato@pantheonweb.com.br" class="ms-2">
+                                        contato@pantheon
                                     </a>
                                 </p>
 
-                                <a href="https://web.whatsapp.com/send/?phone=12981027987" class="btn custom-btn custom-btn-bg-white mt-3" target="_blank">
+                                <a href="https://web.whatsapp.com/send/?phone=13981193513" class="btn custom-btn custom-btn-bg-white mt-3" target="_blank">
                                     Whatsapp
                                 </a>
 

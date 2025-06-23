@@ -124,88 +124,99 @@
 
             <div class="row">
 
-                <nav id="sidebarMenu" class="col-md-3 col-lg-3 d-md-block sidebar collapse">
-                    <div class="position-sticky py-4 px-3 sidebar-sticky">
-                        <ul class="nav flex-column h-100">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-3 d-md-block sidebar collapse">
 
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="index.php">
-                                    <i class="bi-house-fill me-2"></i>
-                                    Home
-                                </a>
-                            </li>
+                <div class="position-sticky py-4 px-3 sidebar-sticky">
 
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="store.php">
-                                    <i class="bi bi-shop me-2"></i>
-                                    Loja
-                                </a>
-                            </li>
+                    <ul class="nav flex-column h-100">
 
-                            <li class="nav-item">
-                                <a class="nav-link active" href="products.php">
-                                    <i class="bi-upc-scan me-2"></i>
-                                    Produtos
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.php">
+                                <i class="bi-house-fill me-2"></i>
+                                Home
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="sales.php">
-                                    <i class="bi bi-currency-dollar me-2"></i>
-                                    Vendas
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="store.php">
+                                <i class="bi bi-shop me-2"></i>
+                                Loja
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="users.php">
-                                    <i class="bi bi-people me-2"></i>
-                                    Vendedores 
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.php">
+                                <i class="bi-upc-scan me-2"></i>
+                                Produtos
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="finances.php">
-                                    <i class="bi bi-pie-chart me-2"></i>
-                                    Finaceiro
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="attribution.php">
+                                <i class="bi bi-boxes me-2"></i>
+                                Atribuir
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="profile.php">
+                        <li class="nav-item">
+                            <a class="nav-link" href="sales.php">
+                                <i class="bi bi-currency-dollar me-2"></i>
+                                Vendas
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="users.php">
+                                <i class="bi bi-people me-2"></i>
+                                Vendedores 
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="finances.php">
+                                <i class="bi bi-pie-chart me-2"></i>
+                                Finaceiro
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php">
                                 <i class="bi bi-person-circle me-2"></i>
-                                    Perfil
-                                </a>
-                            </li>
+                                Perfil
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="setting.html">
-                                    <i class="bi-gear me-2"></i>
-                                    Settings
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="app/argos.apk" download>
+                            <i class="bi bi-cloud-arrow-down me-2"></i>
+                                Download
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="help-center.php">
-                                    <i class="bi-question-circle me-2"></i>
-                                    Help Center
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="help-center.php">
+                                <i class="bi-question-circle me-2"></i>
+                                Help Center
+                            </a>
+                        </li>
 
-                            <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
-                                <img src="images/credit-card.png" class="img-fluid" alt="">
+                        <!-- <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
+                            <img src="images/argosPNG.png" class="img-fluid" alt="">
 
-                                <a class="btn custom-btn" href="#">Upgrade</a>
-                            </li>
+                            <strong>Argos Vision</strong>
+                        </li> -->
 
-                            <li class="nav-item border-top mt-auto pt-2">
-                                <a class="nav-link" href="#">
-                                    <i class="bi-box-arrow-left me-2"></i>
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+                        <li class="nav-item border-top mt-auto pt-2">
+                            <a class="nav-link" href="process/exit.php">
+                                <i class="bi-box-arrow-left me-2"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </nav>
 
                 <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
 
@@ -224,13 +235,13 @@
 
                                     <form class="custom-form password-form" action="process/cadUser.php" method="post" role="form">
 
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Nome do Produto" required="">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Nome" required="">
 
                                         <input type="email" name="email" id="email" class="form-control" placeholder="Email" required="">
 
                                         <select name="type" class="form-control">
-                                            <option value="">ADM</option>
-                                            <option value="1">Vendedor</option>
+                                            <option value="2">Vendedor</option>
+                                            <option value="1">ADM</option>
                                         </select>
 
                                         <div class="d-flex">
@@ -241,7 +252,6 @@
 
                                     </form>
 
-                                    
                                 </div>
                             </div>
                         </div>

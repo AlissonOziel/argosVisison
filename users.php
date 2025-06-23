@@ -8,35 +8,43 @@
 
     protectedAdm();
 
+    $id = $_SESSION['adm'];
     $name = $_SESSION['name'];
     $email = $_SESSION['email'];
 
     $sql = "SELECT  a.id,
                     a.name,
                     a.email,
+                    a.user,
                     
                     b.type
                     FROM users as a
                         JOIN types as b ON a.type = b.id
-                            ORDER BY a.id desc"; 
+                            WHERE a.user = :id
+                                ORDER BY a.id desc"; 
 
     $stmt = $PDO->prepare($sql);
+    $stmt->bindParam(':id', $id);
     $stmt->execute();
 
     //getCountUser
     $gcu = "SELECT COUNT(id) AS count_U
-                FROM users as a "; 
+                FROM users as a
+                    WHERE a.user = :id "; 
 
     $us_count = $PDO->prepare($gcu);
+    $us_count->bindParam(':id', $id);
     $us_count->execute(); 
     $count_us = $us_count->fetchColumn();
 
     //getCountVendedores
     $gcv = "SELECT COUNT(id) AS count_V
                 FROM users as a 
-                    WHERE a.type = 2"; 
+                    WHERE a.type = 2
+                        AND a.user = :id"; 
 
     $usv_count = $PDO->prepare($gcv);
+    $usv_count->bindParam(':id', $id);
     $usv_count->execute(); 
     $count_usv = $usv_count->fetchColumn();
 

@@ -8,6 +8,7 @@
 
     protectedAdm();
 
+    $id = $_SESSION['adm'];
     $name = $_SESSION['name'];
     $email = $_SESSION['email'];
 
@@ -20,32 +21,40 @@
 
                 FROM accounts as a
                     JOIN users as b on a.user = b.id
-                        ORDER BY a.id desc"; 
+                        WHERE a.user = :id
+                            ORDER BY a.id desc"; 
 
     $stmt = $PDO->prepare($sql);
+    $stmt->bindParam(':id', $id);
     $stmt->execute();
 
     //getCommissionPay
-    $gcp = "SELECT SUM(a.commission)
-                    FROM sales as a";
+    $gcp = "SELECT SUM(a.comission)
+                    FROM sales as a
+                        WHERE a.user = :id";
 
     $sumCommission = $PDO->prepare($gcp);
+    $sumCommission->bindParam(':id', $id);
     $sumCommission->execute();
     $totalCommission = $sumCommission->fetchColumn();
 
     //getCommissionPaid
     $gcpd = "SELECT SUM(a.value)
-                    FROM accounts as a";
+                    FROM accounts as a
+                        WHERE a.user = :id";
 
     $sumCommissionPaid = $PDO->prepare($gcpd);
+    $sumCommissionPaid->bindParam(':id', $id);
     $sumCommissionPaid->execute();
     $totalCommissionPaid = $sumCommissionPaid->fetchColumn();
 
     //getSumSales
     $gss = "SELECT SUM(total) AS total_A
-                FROM sales as a "; 
+                FROM sales as a
+                    WHERE a.user = :id "; 
 
     $sa_sum = $PDO->prepare($gss);
+    $sa_sum->bindParam(':id', $id);
     $sa_sum->execute(); 
     $sum_sa = $sa_sum->fetchColumn();
 

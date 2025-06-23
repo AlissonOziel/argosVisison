@@ -8,6 +8,7 @@
 
     protectedAdm();
 
+    $id = $_SESSION['adm'];
     $name = $_SESSION['name'];
     $email = $_SESSION['email'];
 
@@ -21,19 +22,22 @@
                     a.price,
                     a.attribution
                         FROM stokes as a
-                            ORDER BY a.id desc"; 
+                            WHERE a.user = :id
+                                ORDER BY a.id desc"; 
 
     $stmt = $PDO->prepare($sql);
+    $stmt->bindParam(':id', $id);
     $stmt->execute();
 
     //returnProducts
     $user = "SELECT a.id,
                     a.name
                         FROM users as a
-                            WHERE a.type = 2
+                            WHERE a.user = :id
                                 ORDER BY a.id desc"; 
 
     $userR = $PDO->prepare($user);
+    $userR->bindParam(':id', $id);
     $userR->execute();
 
 ?>

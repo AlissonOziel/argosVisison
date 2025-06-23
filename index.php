@@ -9,6 +9,7 @@
 
     protectedAdm();
 
+    $id = $_SESSION['adm'];
     $name = $_SESSION['name'];
     $email = $_SESSION['email'];
 
@@ -20,19 +21,23 @@
                     b.category 
                         FROM stokes AS a 
                             JOIN categorys AS b ON a.category = b.id
-                                GROUP BY b.category 
-                                ORDER BY a.id DESC";
+                                WHERE a.user = :id
+                                    GROUP BY b.category 
+                                        ORDER BY a.id DESC";
 
     $stmt = $PDO->prepare($sql);
+    $stmt->bindParam(':id', $id);
     $stmt->execute();
 
     // Retorna a soma total de quantidades e o valor total do estoque
     $total = "SELECT 
                     SUM(quantity) AS total_stock_quantity, 
                     SUM(price * quantity) AS total_stock_value 
-                        FROM stokes;";
+                        FROM stokes
+                            WHERE user = :id";
 
     $rTotal = $PDO->prepare($total);
+    $rTotal->bindParam(':id', $id);
     $rTotal->execute();
 
     $resultTotal = $rTotal->fetch(PDO::FETCH_ASSOC);
@@ -42,18 +47,22 @@
     // Retorna a receita agrupada por método de pagamento
     $pays = "SELECT p.pay AS payment_method, 
                     SUM(s.total) AS revenue 
-                        FROM sales s
+                        FROM sales as s 
                             JOIN pays p ON s.pay = p.id
-                                GROUP BY p.pay;";
+                               WHERE s.user = :id
+                                    GROUP BY p.pay;";
 
     $rPay = $PDO->prepare($pays);
+    $rPay->bindParam(':id', $id);
     $rPay->execute();
 
     // Retorna a soma total das vendas realizadas
     $gss = "SELECT SUM(total) AS total_A 
-                        FROM sales";
+                        FROM sales
+                            WHERE user = :id";
 
     $sumSales = $PDO->prepare($gss);
+    $sumSales->bindParam(':id', $id);
     $sumSales->execute();
 
     $result = $sumSales->fetch(PDO::FETCH_ASSOC);
@@ -61,17 +70,21 @@
 
     // Retorna a soma total das quantidades vendidas
     $gsq = "SELECT SUM(quantity) AS sum_A 
-                        FROM sales"; 
+                        FROM sales
+                            WHERE user = :id"; 
 
     $qu_sum = $PDO->prepare($gsq);
+    $qu_sum->bindParam(':id', $id);
     $qu_sum->execute(); 
     $sum_qu = $qu_sum->fetchColumn();
 
     // Retorna a quantidade total de vendas realizadas
     $cts = "SELECT COUNT(id) AS count_sales 
-                        FROM sales";
+                        FROM sales
+                            WHERE user = :id";
 
     $countSales = $PDO->prepare($cts);
+    $countSales->bindParam(':id', $id);
     $countSales->execute();
 
     $result = $countSales->fetch(PDO::FETCH_ASSOC);
@@ -79,30 +92,37 @@
 
     // Retorna a contagem total de usuários
     $gsu = "SELECT COUNT(id) AS count_users 
-                        FROM users"; 
+                        FROM users
+                            WHERE user = :id"; 
 
     $us_sum = $PDO->prepare($gsu);
+    $us_sum->bindParam(':id', $id);
     $us_sum->execute(); 
     $sum_us = $us_sum->fetchColumn();
 
     // Retorna a contagem de vendedores
     $gcss = "SELECT COUNT(id) AS sum_users
                         FROM users 
-                            WHERE type = 2";
+                            WHERE type = 2
+                                AND user = :id";
 
     $ssa_count = $PDO->prepare($gcss);
+    $ssa_count->bindParam(':id', $id);
     $ssa_count->execute(); 
     $count_us = $ssa_count->fetchColumn();
 
     // Retorna a atribuição total de produtos por usuário
     $rt = "SELECT   u.id AS id_user, 
-                    u.name, 
+                    u.name,
+                    u.user,
                     SUM(p.quantity) AS totalAttribuition 
                         FROM products p
                             JOIN users AS u ON p.USER = u.id
-                                GROUP BY u.NAME;";
+                                WHERE u.user = :id
+                                    GROUP BY u.NAME;";
 
     $ra = $PDO->prepare($rt);
+    $ra->bindParam(':id', $id);
     $ra->execute();
 
 ?>

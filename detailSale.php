@@ -66,6 +66,8 @@
         <link href="css/apexcharts.css" rel="stylesheet">
 
         <link href="css/tooplate-mini-finance.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
         
     </head>
     
@@ -308,7 +310,7 @@
                                     </div>
 
                                     <div class="custom-block-transation-detail-item mt-4 ms-auto me-auto">
-                                        <h6>Pagemnto</h6>
+                                        <h6>Pagemento</h6>
 
                                         <p>
                                             <?php echo $sale['pay']; ?>
@@ -316,7 +318,7 @@
                                     </div>
                                 </div>
                                 
-                            </div>
+                            </div><button onclick="printDivScreenshot()">🖨️ Imprimir Página</button>
                         </div>
                     </div>
 
@@ -344,6 +346,51 @@
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/apexcharts.min.js"></script>
         <script src="js/custom.js"></script>
+
+        
+
+
+        <script>
+            function printDivScreenshot() {
+            const targetDiv = document.querySelector('.custom-block.custom-block-transation-detail.bg-white');
+            
+            if (!targetDiv) {
+                alert('Div não encontrada!');
+                return;
+            }
+
+            html2canvas(targetDiv).then(canvas => {
+                const imageData = canvas.toDataURL('image/png');
+
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Comprovante de Compra</title>
+                    <style>
+                    body { margin: 0; text-align: center; }
+                    img { max-width: 100%; }
+                    </style>
+                </head>
+                <body>
+                    <img src="${imageData}" />
+                    <script>
+                    window.onload = function() {
+                        window.print();
+                    };
+                    window.onafterprint = function() {
+                        window.close();
+                    };
+                    <\/script>
+                </body>
+                </html>
+                `);
+
+                printWindow.document.close();
+            });
+            }
+        </script>
+
 
     </body>
 </html>

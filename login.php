@@ -55,13 +55,13 @@
                                             <p class="d-flex flex-wrap mb-2">
                                                 <strong>Email:</strong>
                                                 
-                                                <input type="email" name="email" id="email" class="form-control" placeholder="Preço" required="">
+                                                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required="">
                                             </p>
 
                                             <p class="d-flex flex-wrap mb-2">
                                                 <strong>Password:</strong>
                                                 
-                                                <input type="password" name="password" id="password" class="form-control" placeholder="Quantidade" required="">
+                                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="">
                                             </p>
 
                                             <p class="d-flex flex-wrap mb-2">

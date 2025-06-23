@@ -108,7 +108,7 @@
 
 
     //getCommissionPay
-    $gcp = "SELECT SUM(a.commission)
+    $gcp = "SELECT SUM(a.comission)
                     FROM sales as a
                         WHERE a.user = :id";
 

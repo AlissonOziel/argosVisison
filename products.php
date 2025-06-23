@@ -8,6 +8,7 @@
 
     protectedAdm();
 
+    $id = $_SESSION['adm'];
     $name = $_SESSION['name'];
     $email = $_SESSION['email'];
 
@@ -16,15 +17,18 @@
                  a.quantity,
                  a.value,
                  a.price,
+                 a.user,
 
                  b.category
            
             FROM stokes as a
               JOIN categorys as b ON a.category = b.id
                 WHERE a.active = 1
-                    ORDER BY a.id desc"; 
+                    AND a.user = :id
+                        ORDER BY a.id desc"; 
 
   $stmt = $PDO->prepare($sql);
+  $stmt->bindParam(':id', $id);
   $stmt->execute();
 
 ?>
